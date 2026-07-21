@@ -1,0 +1,26 @@
+---
+import { clinic } from '../data/clinic';
+import Logo from './Logo.astro';
+---
+
+<footer class="site-footer">
+	<div class="shell footer__main">
+		<div>
+			<Logo />
+			<p>{clinic.tagline}</p>
+		</div>
+		<nav aria-label="Footer navigation">
+			<a href="#doctor">Doctor</a>
+			<a href="#treatments">Treatments</a>
+			<a href="#visit">Visit us</a>
+		</nav>
+		<div class="footer__contact">
+			<a href={clinic.phoneHref}>{clinic.phoneDisplay}</a>
+			<a href={`mailto:${clinic.email}`}>{clinic.email}</a>
+		</div>
+	</div>
+	<div class="shell footer__bottom">
+		<p>© {new Date().getFullYear()} {clinic.name}. All rights reserved.</p>
+		<p>Developed by <a href="https://ajadhav.com/" target="_blank" rel="noreferrer">Atharva Jadhav</a></p>
+	</div>
+</footer>

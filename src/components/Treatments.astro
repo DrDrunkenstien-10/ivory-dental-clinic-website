@@ -1,0 +1,27 @@
+---
+import { clinic } from '../data/clinic';
+---
+
+<section class="section treatments" id="treatments" aria-labelledby="treatments-title">
+	<div class="shell">
+		<div class="section-heading">
+			<div>
+				<p class="eyebrow">Treatments provided</p>
+				<h2 id="treatments-title">Everything your smile needs.</h2>
+			</div>
+			<p>From preventive check-ups to advanced restorative and cosmetic care, find treatment for every stage of your dental health.</p>
+		</div>
+		<ul class="treatment-grid">
+			{clinic.treatments.map((treatment, index) => (
+				<li class="treatment-card">
+					<span class="treatment-card__number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+					<span>{treatment.name}</span>
+					<svg class="treatment-card__tooth" viewBox="0 0 32 36" aria-hidden="true">
+						<path d="M7 4c4-2.5 6-.5 9-.5s5-2 9 .5c6 4 3.8 11.5 1.3 16-2.5 4.4-2.6 12-6 12-3 0-1.6-7-4.3-7s-1.3 7-4.3 7c-3.4 0-3.5-7.6-6-12C3.2 15.5 1 8 7 4Z" />
+					</svg>
+				</li>
+			))}
+		</ul>
+	</div>
+</section>
+

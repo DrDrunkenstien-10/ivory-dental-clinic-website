@@ -1,0 +1,86 @@
+---
+import '../styles/global.css';
+import { clinic } from '../data/clinic';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = `${clinic.name} | Dentist in Bhekarainagar, Pune`,
+	description = 'Ivory Dental Clinic in Bhekarainagar, Pune offers complete dental care with Dr. Apurva Undre. Call to schedule an appointment.',
+} = Astro.props;
+
+const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+const structuredData = {
+	'@context': 'https://schema.org',
+	'@type': 'Dentist',
+	name: clinic.name,
+	description,
+	slogan: clinic.tagline,
+	telephone: '+91-7498227203',
+	email: clinic.email,
+	address: {
+		'@type': 'PostalAddress',
+		streetAddress: 'Shri Seva Hospital, Bhekarainagar',
+		addressLocality: 'Pune',
+		postalCode: '412308',
+		addressRegion: 'Maharashtra',
+		addressCountry: 'IN',
+	},
+	employee: {
+		'@type': 'Dentist',
+		name: clinic.doctor.name,
+		honorificSuffix: clinic.doctor.degree,
+		jobTitle: clinic.doctor.specialization,
+	},
+	openingHoursSpecification: [
+		{
+			'@type': 'OpeningHoursSpecification',
+			dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+			opens: '10:00',
+			closes: '13:30',
+		},
+		{
+			'@type': 'OpeningHoursSpecification',
+			dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+			opens: '17:30',
+			closes: '20:00',
+		},
+		{
+			'@type': 'OpeningHoursSpecification',
+			dayOfWeek: 'Saturday',
+			opens: '10:00',
+			closes: '16:00',
+		},
+	],
+};
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content="#0b5d5b" />
+		<meta name="description" content={description} />
+		<meta property="og:type" content="website" />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:site_name" content={clinic.name} />
+		<meta property="og:locale" content="en_IN" />
+		{canonicalURL && <link rel="canonical" href={canonicalURL} />}
+		{canonicalURL && <meta property="og:url" content={canonicalURL} />}
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.svg" sizes="any" />
+		<title>{title}</title>
+		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+	</head>
+	<body>
+		<a class="skip-link" href="#main-content">Skip to main content</a>
+		<slot />
+	</body>
+</html>
+

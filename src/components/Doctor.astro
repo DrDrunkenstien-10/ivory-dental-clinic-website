@@ -1,0 +1,33 @@
+---
+import { clinic } from '../data/clinic';
+import Icon from './Icon.astro';
+---
+
+<section class="section doctor" id="doctor" aria-labelledby="doctor-title">
+	<div class="shell doctor__grid">
+		<div class="doctor__portrait" aria-hidden="true">
+			<div class="doctor__monogram">AU</div>
+			<svg viewBox="0 0 400 480">
+				<circle cx="200" cy="156" r="70" />
+				<path d="M88 425c4-113 47-179 112-179s108 66 112 179" />
+				<path d="m148 260 52 64 52-64M200 324v101" />
+			</svg>
+			<span class="doctor__accent">✦</span>
+		</div>
+		<div class="doctor__content">
+			<p class="eyebrow">Meet your dentist</p>
+			<h2 id="doctor-title">Care you can feel<br />confident about.</h2>
+			<p class="doctor__intro">A patient-first approach, backed by clinical precision and a focus on natural-looking, lasting smiles.</p>
+			<div class="doctor__name">
+				<h3>{clinic.doctor.name}</h3>
+				<p>{clinic.doctor.degree} · Reg. No. {clinic.doctor.registration}</p>
+			</div>
+			<ul class="credentials">
+				<li><span><Icon name="check" size={17} /></span>{clinic.doctor.fellowship} <small>({clinic.doctor.fellowshipInstitution})</small></li>
+				<li><span><Icon name="check" size={17} /></span>{clinic.doctor.specialization}</li>
+			</ul>
+			<a class="text-link" href={clinic.phoneHref}>Schedule a visit <Icon name="arrow" size={18} /></a>
+		</div>
+	</div>
+</section>
+

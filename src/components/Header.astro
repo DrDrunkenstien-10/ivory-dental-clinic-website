@@ -1,0 +1,28 @@
+---
+import { clinic } from '../data/clinic';
+import Icon from './Icon.astro';
+import Logo from './Logo.astro';
+---
+
+<header class="site-header">
+	<div class="header__main shell">
+		<Logo />
+		<nav class="desktop-nav" aria-label="Primary navigation">
+			<a href="#doctor">Doctor</a>
+			<a href="#treatments">Treatments</a>
+			<a href="#visit">Visit us</a>
+		</nav>
+		<a class="button button--small" href={clinic.phoneHref} aria-label={`Call ${clinic.name} for an appointment`}>
+			<Icon name="phone" size={18} />
+			<span>Call for appointment</span>
+		</a>
+	</div>
+	<nav class="mobile-nav" aria-label="Mobile navigation">
+		<div class="shell">
+			<a href="#doctor">Doctor</a>
+			<a href="#treatments">Treatments</a>
+			<a href="#visit">Visit us</a>
+		</div>
+	</nav>
+</header>
+

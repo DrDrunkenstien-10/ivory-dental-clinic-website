@@ -1,0 +1,93 @@
+---
+import { clinic } from "../data/clinic";
+import Icon from "./Icon.astro";
+---
+
+<section class="section visit" id="visit" aria-labelledby="visit-title">
+	<div class="shell">
+		<div class="section-heading section-heading--light">
+			<div>
+				<p class="eyebrow">Plan your visit</p>
+				<h2 id="visit-title">We’re here when you need us.</h2>
+			</div>
+			<a class="button button--ivory" href={clinic.phoneHref}
+				><Icon name="phone" size={19} /> Call {clinic.phoneDisplay}</a
+			>
+		</div>
+
+		<div class="visit__grid">
+			<div class="visit__details">
+				<div class="info-block">
+					<div class="info-block__icon">
+						<Icon name="clock" size={22} />
+					</div>
+					<div>
+						<h3>Clinic hours</h3>
+						<dl class="hours-list">
+							{
+								clinic.hours.map((item) => (
+									<div>
+										<dt>{item.days}</dt>
+										<dd
+											class:list={{ closed: item.closed }}
+										>
+											{item.times.map((time) => (
+												<span>{time}</span>
+											))}
+										</dd>
+									</div>
+								))
+							}
+						</dl>
+					</div>
+				</div>
+
+				<div class="info-block">
+					<div class="info-block__icon">
+						<Icon name="location" size={22} />
+					</div>
+					<div>
+						<h3>Find us</h3>
+						<address>{clinic.address}</address>
+						<a
+							class="visit__link"
+							href={clinic.mapsQuery}
+							target="_blank"
+							rel="noreferrer"
+							>Open in Google Maps <Icon
+								name="arrow"
+								size={17}
+							/></a
+						>
+					</div>
+				</div>
+
+				<div class="info-block">
+					<div class="info-block__icon">
+						<Icon name="mail" size={22} />
+					</div>
+					<div>
+						<h3>Get in touch</h3>
+						<a href={clinic.phoneHref}>{clinic.phoneDisplay}</a>
+						<a href={`mailto:${clinic.email}`}>{clinic.email}</a>
+					</div>
+				</div>
+			</div>
+
+			<div class="map-card">
+				<iframe
+					src={clinic.mapEmbed}
+					title={`Map showing ${clinic.name} at Shri Seva Hospital, Bhekarainagar, Pune`}
+					loading="lazy"
+					referrerpolicy="no-referrer-when-downgrade"></iframe>
+				<div class="map-card__label">
+					<span><Icon name="location" size={18} /></span>
+					<div>
+						<strong>{clinic.name}</strong><small
+							>Shri Seva Hospital, Bhekarainagar</small>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
