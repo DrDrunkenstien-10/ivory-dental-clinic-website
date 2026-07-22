@@ -465,46 +465,14 @@ svg {
     background: linear-gradient(155deg, #dfeae4, #aacbc0)
 }
 
-.doctor__portrait::before {
+.doctor__portrait img {
     position: absolute;
-    width: 330px;
-    height: 330px;
-    top: -100px;
-    right: -100px;
-    border: 1px solid rgba(255, 255, 255, .6);
-    border-radius: 50%;
-    content: ''
-}
-
-.doctor__portrait svg {
-    position: absolute;
-    right: 8%;
-    bottom: 0;
-    left: 8%;
-    width: 84%;
-    fill: rgba(7, 71, 68, .1);
-    stroke: rgba(7, 71, 68, .6);
-    stroke-width: 2
-}
-
-.doctor__monogram {
-    position: absolute;
-    top: 34px;
-    left: 34px;
-    color: rgba(7, 71, 68, .72);
-    font-family: Georgia, serif;
-    font-size: 24px;
-    font-style: italic;
-    letter-spacing: .04em
-}
-
-.doctor__accent {
-    position: absolute;
-    right: 30px;
-    bottom: 24px;
-    color: var(--teal);
-    font-family: Georgia, serif;
-    font-size: 38px
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    min-height: 620px;
+    object-fit: cover;
+    object-position: center 46%
 }
 
 .doctor__intro {
@@ -875,12 +843,17 @@ svg {
 
 @media(max-width:980px) {
     .hero__grid {
-        grid-template-columns: 1fr .8fr;
-        gap: 35px
+        min-height: 620px;
+        grid-template-columns: 1fr;
+        gap: 0
     }
 
     .hero__visual {
-        min-height: 460px
+        display: none
+    }
+
+    .hero__content {
+        max-width: 720px
     }
 
     .doctor__grid {
@@ -888,6 +861,10 @@ svg {
     }
 
     .doctor__portrait {
+        min-height: 470px
+    }
+
+    .doctor__portrait img {
         min-height: 470px
     }
 
@@ -1011,6 +988,10 @@ svg {
         min-height: 480px
     }
 
+    .doctor__portrait img {
+        min-height: 480px
+    }
+
     .section-heading {
         align-items: flex-start;
         flex-direction: column;
@@ -1052,6 +1033,10 @@ svg {
     }
 
     .doctor__portrait {
+        min-height: 400px
+    }
+
+    .doctor__portrait img {
         min-height: 400px
     }
 

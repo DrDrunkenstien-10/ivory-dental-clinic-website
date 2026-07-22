@@ -5,14 +5,15 @@ import Icon from './Icon.astro';
 
 <section class="section doctor" id="doctor" aria-labelledby="doctor-title">
 	<div class="shell doctor__grid">
-		<div class="doctor__portrait" aria-hidden="true">
-			<div class="doctor__monogram">AU</div>
-			<svg viewBox="0 0 400 480">
-				<circle cx="200" cy="156" r="70" />
-				<path d="M88 425c4-113 47-179 112-179s108 66 112 179" />
-				<path d="m148 260 52 64 52-64M200 324v101" />
-			</svg>
-			<span class="doctor__accent">✦</span>
+		<div class="doctor__portrait">
+			<img
+				src="/dentist-image.jpeg"
+				alt="Dr. Apurva Undre, dentist at Ivory Dental Clinic"
+				width="900"
+				height="1600"
+				loading="lazy"
+				decoding="async"
+			/>
 		</div>
 		<div class="doctor__content">
 			<p class="eyebrow">Meet your dentist</p>
@@ -30,4 +31,3 @@ import Icon from './Icon.astro';
 		</div>
 	</div>
 </section>
-
