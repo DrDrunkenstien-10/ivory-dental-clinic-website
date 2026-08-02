@@ -6,7 +6,7 @@
     --mint-light: #e4eee9;
     --gold: #d8ad6a;
     --ink: #173a38;
-    --muted: #637a77;
+    --muted: #5c716e;
     --line: rgba(11, 93, 91, .14);
     --shadow: 0 22px 60px rgba(5, 57, 55, .11);
     --radius-lg: 28px;
@@ -42,8 +42,9 @@ a {
 a:focus-visible,
 button:focus-visible,
 iframe:focus-visible {
-    outline: 3px solid var(--gold);
-    outline-offset: 4px
+    outline: 3px solid var(--paper);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 6px var(--teal)
 }
 
 svg {
@@ -706,7 +707,7 @@ svg {
 }
 
 .hours-list dt {
-    color: rgba(255, 255, 255, .55)
+    color: rgba(255, 255, 255, .6)
 }
 
 .hours-list dd {
