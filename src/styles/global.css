@@ -148,6 +148,9 @@ svg {
 
 .desktop-nav a,
 .site-footer nav a {
+    display: inline-flex;
+    min-height: 44px;
+    align-items: center;
     transition: color 180ms ease
 }
 
@@ -203,6 +206,7 @@ svg {
 .text-link,
 .visit__link {
     display: inline-flex;
+    min-height: 44px;
     align-items: center;
     gap: 8px;
     color: var(--teal);
@@ -951,7 +955,8 @@ svg {
     }
 
     .header__main .button {
-        width: 43px;
+        width: 44px;
+        min-height: 44px;
         padding: 0
     }
 
@@ -975,15 +980,20 @@ svg {
 
     .mobile-nav .shell {
         display: flex;
-        height: 45px;
+        min-height: 48px;
         align-items: center;
         justify-content: space-around
     }
 
     .mobile-nav a {
-        padding: 8px 12px;
+        display: inline-flex;
+        min-height: 44px;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 10px;
         font-size: 12px;
-        font-weight: 600
+        font-weight: 600;
+        text-align: center
     }
 
     .hero,
@@ -1064,7 +1074,8 @@ svg {
     }
 
     .hero__facts {
-        gap: 19px
+        flex-wrap: wrap;
+        gap: 19px 28px
     }
 
     .hero__visual {
@@ -1119,7 +1130,13 @@ svg {
     }
 
     .footer__contact {
+        min-width: 0;
         align-items: flex-start
+    }
+
+    .footer__contact a {
+        max-width: 100%;
+        overflow-wrap: anywhere
     }
 
     .footer__bottom {
