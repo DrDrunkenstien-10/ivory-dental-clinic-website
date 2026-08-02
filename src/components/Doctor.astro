@@ -1,18 +1,21 @@
 ---
 import { clinic } from '../data/clinic';
+import { Image } from 'astro:assets';
+import dentistImage from '../assets/dentist-image.jpeg';
 import Icon from './Icon.astro';
 ---
 
 <section class="section doctor" id="doctor" aria-labelledby="doctor-title">
 	<div class="shell doctor__grid">
 		<div class="doctor__portrait">
-			<img
-				src="/dentist-image.jpeg"
+			<Image
+				src={dentistImage}
 				alt="Dr. Apurva Undre, dentist at Ivory Dental Clinic"
-				width="900"
-				height="1600"
+				widths={[320, 480, 677]}
+				sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 980px) 44vw, 430px"
+				format="webp"
+				quality={80}
 				loading="lazy"
-				decoding="async"
 			/>
 		</div>
 		<div class="doctor__content">

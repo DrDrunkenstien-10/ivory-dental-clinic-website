@@ -1,5 +1,12 @@
 ---
 import '../styles/global.css';
+import '@fontsource/dm-sans/latin-400.css';
+import '@fontsource/dm-sans/latin-500.css';
+import '@fontsource/dm-sans/latin-600.css';
+import '@fontsource/dm-sans/latin-700.css';
+import '@fontsource/manrope/latin-400.css';
+import '@fontsource/manrope/latin-600.css';
+import '@fontsource/manrope/latin-700.css';
 import { clinic } from '../data/clinic';
 
 interface Props {
@@ -76,11 +83,10 @@ const structuredData = {
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.svg" sizes="any" />
 		<title>{title}</title>
-		<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+		<script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
 		<slot />
 	</body>
 </html>
-
