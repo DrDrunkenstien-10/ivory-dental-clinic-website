@@ -12,54 +12,86 @@ import { clinic } from '../data/clinic';
 interface Props {
 	title?: string;
 	description?: string;
+	noindex?: boolean;
 }
 
 const {
-	title = `${clinic.name} | Dentist in Bhekarainagar, Pune`,
-	description = 'Ivory Dental Clinic in Bhekarainagar, Pune offers complete dental care with Dr. Apurva Undre. Call to schedule an appointment.',
+	title = `Dentist in Bhekarainagar, Pune | ${clinic.name}`,
+	description = 'Visit Ivory Dental Clinic in Bhekarainagar, Pune for preventive, restorative and cosmetic dental care with Dr. Apurva Undre.',
+	noindex = false,
 } = Astro.props;
 
-const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site) : undefined;
+const canonicalURL = Astro.site && !noindex ? new URL(Astro.url.pathname, Astro.site) : undefined;
+const siteURL = Astro.site ? new URL('/', Astro.site) : undefined;
+const sitemapURL = Astro.site ? new URL('sitemap-index.xml', Astro.site) : undefined;
+const websiteID = Astro.site ? new URL('/#website', Astro.site).href : undefined;
+const dentistID = Astro.site ? new URL('/#dentist', Astro.site).href : undefined;
 const structuredData = {
 	'@context': 'https://schema.org',
-	'@type': 'Dentist',
-	name: clinic.name,
-	description,
-	slogan: clinic.tagline,
-	telephone: '+91-7498227203',
-	email: clinic.email,
-	address: {
-		'@type': 'PostalAddress',
-		streetAddress: 'Shri Seva Hospital, Bhekarainagar',
-		addressLocality: 'Pune',
-		postalCode: '412308',
-		addressRegion: 'Maharashtra',
-		addressCountry: 'IN',
-	},
-	employee: {
-		'@type': 'Dentist',
-		name: clinic.doctor.name,
-		honorificSuffix: clinic.doctor.degree,
-		jobTitle: clinic.doctor.specialization,
-	},
-	openingHoursSpecification: [
+	'@graph': [
 		{
-			'@type': 'OpeningHoursSpecification',
-			dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-			opens: '10:00',
-			closes: '13:30',
+			'@type': 'WebSite',
+			'@id': websiteID,
+			url: siteURL?.href,
+			name: clinic.name,
+			description,
+			inLanguage: 'en-IN',
+			publisher: { '@id': dentistID },
 		},
 		{
-			'@type': 'OpeningHoursSpecification',
-			dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
-			opens: '17:30',
-			closes: '20:00',
-		},
-		{
-			'@type': 'OpeningHoursSpecification',
-			dayOfWeek: 'Saturday',
-			opens: '10:00',
-			closes: '16:00',
+			'@type': 'Dentist',
+			'@id': dentistID,
+			url: siteURL?.href,
+			name: clinic.name,
+			description,
+			slogan: clinic.tagline,
+			telephone: '+91-7498227203',
+			email: clinic.email,
+			address: {
+				'@type': 'PostalAddress',
+				streetAddress: 'Shri Seva Hospital, Bhekarainagar',
+				addressLocality: 'Pune',
+				postalCode: '412308',
+				addressRegion: 'Maharashtra',
+				addressCountry: 'IN',
+			},
+			employee: {
+				'@type': 'Person',
+				name: clinic.doctor.name,
+				honorificSuffix: clinic.doctor.degree,
+				jobTitle: clinic.doctor.specialization,
+			},
+			openingHoursSpecification: [
+				{
+					'@type': 'OpeningHoursSpecification',
+					dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+					opens: '10:00',
+					closes: '13:30',
+				},
+				{
+					'@type': 'OpeningHoursSpecification',
+					dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'],
+					opens: '17:30',
+					closes: '20:00',
+				},
+				{
+					'@type': 'OpeningHoursSpecification',
+					dayOfWeek: 'Saturday',
+					opens: '10:00',
+					closes: '16:00',
+				},
+			],
+			hasOfferCatalog: {
+				'@type': 'OfferCatalog',
+				name: 'Dental treatments',
+				itemListElement: clinic.treatments.map((treatment) => ({
+					'@type': 'Offer',
+					itemOffered: {
+						'@type': 'Service',
+						name: treatment.name,
+					},
+				})),
+			},
 		},
 	],
 };
@@ -73,6 +105,7 @@ const structuredData = {
 		<meta name="generator" content={Astro.generator} />
 		<meta name="theme-color" content="#0b5d5b" />
 		<meta name="description" content={description} />
+		<meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
 		<meta property="og:type" content="website" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
@@ -80,10 +113,14 @@ const structuredData = {
 		<meta property="og:locale" content="en_IN" />
 		{canonicalURL && <link rel="canonical" href={canonicalURL} />}
 		{canonicalURL && <meta property="og:url" content={canonicalURL} />}
+		<meta name="twitter:card" content="summary" />
+		<meta name="twitter:title" content={title} />
+		<meta name="twitter:description" content={description} />
+		{sitemapURL && <link rel="sitemap" href={sitemapURL} />}
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.svg" sizes="any" />
 		<title>{title}</title>
-		<script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
+		{!noindex && <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />}
 	</head>
 	<body>
 		<a class="skip-link" href="#main-content">Skip to main content</a>
