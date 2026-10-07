@@ -1,7 +1,7 @@
 ---
 import { clinic } from '../data/clinic';
 import { Image } from 'astro:assets';
-import dentistImage from '../assets/dentist-image.jpeg';
+import dentistImage from '../assets/dentist.webp';
 import Icon from './Icon.astro';
 ---
 
@@ -10,8 +10,8 @@ import Icon from './Icon.astro';
 		<div class="doctor__portrait">
 			<Image
 				src={dentistImage}
-				alt="Dr. Apurva Undre, dentist at Ivory Dental Clinic"
-				widths={[320, 480, 677]}
+				alt="Dr. Apurva Undre standing beside the dental chair at Ivory Dental Clinic"
+				widths={[320, 480, 574]}
 				sizes="(max-width: 760px) calc(100vw - 32px), (max-width: 980px) 44vw, 430px"
 				format="webp"
 				quality={80}
@@ -27,7 +27,7 @@ import Icon from './Icon.astro';
 				<p>{clinic.doctor.degree} · Reg. No. {clinic.doctor.registration}</p>
 			</div>
 			<ul class="credentials">
-				<li><span><Icon name="check" size={17} /></span>{clinic.doctor.fellowship} <small>({clinic.doctor.fellowshipInstitution})</small></li>
+				<li><span><Icon name="check" size={17} /></span><div>{clinic.doctor.fellowship} <small>({clinic.doctor.fellowshipInstitution})</small></div></li>
 				<li><span><Icon name="check" size={17} /></span>{clinic.doctor.specialization}</li>
 			</ul>
 			<a class="text-link" href={clinic.phoneHref}>Schedule a visit <Icon name="arrow" size={18} /></a>

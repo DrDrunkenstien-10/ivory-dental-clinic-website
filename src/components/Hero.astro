@@ -4,41 +4,38 @@ import Icon from './Icon.astro';
 ---
 
 <section class="hero" id="home" aria-labelledby="hero-title">
-	<div class="hero__orb hero__orb--one" aria-hidden="true"></div>
-	<div class="hero__orb hero__orb--two" aria-hidden="true"></div>
-	<div class="shell hero__grid">
-		<div class="hero__content">
-			<p class="eyebrow">Thoughtful dental care in Pune</p>
-			<h1 id="hero-title">Healthy teeth.<br /><em>Happier you.</em></h1>
-			<p class="hero__lead">Complete dental care delivered with precision, comfort and a gentle approach—for every smile in your family.</p>
-			<div class="hero__actions">
-				<a class="button" href={clinic.phoneHref} aria-label={`Call ${clinic.name} for an appointment`}>
-					<Icon name="phone" size={19} /> Call for appointment
-				</a>
-				<a class="text-link" href={clinic.mapsQuery} target="_blank" rel="noreferrer">
-					Get directions <Icon name="arrow" size={18} />
-				</a>
-			</div>
-			<div class="hero__facts" aria-label="Clinic highlights">
-				<div><Icon name="location" size={20} /><span>Bhekarainagar,<br /><strong>Pune</strong></span></div>
-				<div><Icon name="clock" size={20} /><span>Open Mon–Sat<br /><strong>Sunday closed</strong></span></div>
-			</div>
-		</div>
-
-		<div class="hero__visual" aria-hidden="true">
-			<div class="hero__arch">
-				<svg class="hero__tooth" viewBox="0 0 300 360">
-					<path d="M63 46C97 24 121 39 150 39s53-15 87 7c59 38 38 115 11 161-27 45-30 115-65 115-31 0-14-75-33-75s-2 75-33 75c-35 0-38-70-65-115C25 161 4 84 63 46Z" fill="none" stroke="currentColor" stroke-width="3" />
-					<path d="M207 78c-18 13-37 19-57 19" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+	<div class="shell hero__inner">
+		<p class="eyebrow">Thoughtful dental care in Pune</p>
+		<h1 id="hero-title">
+			Healthy teeth.<br />
+			<em>Happier you.
+				<svg class="hero__smile" viewBox="0 0 300 40" aria-hidden="true">
+					<path d="M6 8C80 36 220 36 294 8" pathLength="1" />
 				</svg>
-				<div class="hero__sparkle hero__sparkle--one">✦</div>
-				<div class="hero__sparkle hero__sparkle--two">✧</div>
-			</div>
-			<div class="hero__badge">
-				<span class="hero__badge-mark">✓</span>
-				<span><strong>Gentle care</strong><small>Comfort at every step</small></span>
-			</div>
+			</em>
+		</h1>
+		<p class="hero__lead">Complete dental care delivered with precision, comfort and a gentle approach—for every smile in your family.</p>
+		<div class="hero__actions">
+			<a class="button" href={clinic.phoneHref} aria-label={`Call ${clinic.name} for an appointment`}>
+				<Icon name="phone" size={19} /> Call for appointment
+			</a>
+			<a class="text-link" href={clinic.mapsQuery} target="_blank" rel="noreferrer">
+				Get directions <Icon name="arrow" size={18} />
+			</a>
+		</div>
+		<div class="hero__facts" aria-label="Clinic highlights">
+			<div><Icon name="location" size={20} /><span>Bhekarainagar,<br /><strong>Pune</strong></span></div>
+			<div><Icon name="clock" size={20} /><span>Open Mon–Sat<br /><strong>Sunday closed</strong></span></div>
+		</div>
+	</div>
+
+	<div class="ribbon" aria-hidden="true">
+		<div class="ribbon__track">
+			{[0, 1].map(() => (
+				<ul>
+					{clinic.treatments.map((treatment) => <li>{treatment.name}</li>)}
+				</ul>
+			))}
 		</div>
 	</div>
 </section>
-

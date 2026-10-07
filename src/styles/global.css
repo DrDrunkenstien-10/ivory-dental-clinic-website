@@ -78,8 +78,7 @@ svg {
     top: 0;
     z-index: 30;
     border-bottom: 1px solid rgba(11, 93, 91, .09);
-    background: rgba(251, 248, 240, .92);
-    backdrop-filter: blur(16px)
+    background: rgba(251, 248, 240, .97)
 }
 
 .header__main {
@@ -226,6 +225,9 @@ svg {
 }
 
 .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     margin: 0 0 17px;
     color: var(--teal);
     font-size: 12px;
@@ -234,26 +236,57 @@ svg {
     text-transform: uppercase
 }
 
+.eyebrow::before {
+    width: 28px;
+    height: 2px;
+    flex: 0 0 auto;
+    border-radius: 2px;
+    background: currentColor;
+    content: ''
+}
+
 .hero {
     position: relative;
-    min-height: 690px;
     overflow: hidden;
-    background: linear-gradient(115deg, var(--ivory) 0%, #f8f4ea 55%, #e8eee7 100%)
+    background:
+        radial-gradient(620px 420px at 10% 6%, var(--mint-light), transparent 70%),
+        radial-gradient(720px 480px at 94% 80%, var(--mint-light), transparent 70%),
+        var(--ivory)
 }
 
-.hero__grid {
-    position: relative;
-    display: grid;
-    min-height: 690px;
-    grid-template-columns: 1.03fr .97fr;
+.hero__inner {
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    gap: 62px;
-    padding-block: 76px 68px
+    padding-block: 104px 92px;
+    text-align: center
 }
 
-.hero__content {
-    position: relative;
-    z-index: 2
+.hero__inner>* {
+    animation: rise 700ms cubic-bezier(.2, .7, .2, 1) backwards
+}
+
+.hero__inner>:nth-child(2) {
+    animation-delay: 90ms
+}
+
+.hero__inner>:nth-child(3) {
+    animation-delay: 180ms
+}
+
+.hero__inner>:nth-child(4) {
+    animation-delay: 270ms
+}
+
+.hero__inner>:nth-child(5) {
+    animation-delay: 360ms
+}
+
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(18px)
+    }
 }
 
 .hero h1,
@@ -266,19 +299,39 @@ svg {
 }
 
 .hero h1 {
-    max-width: 650px;
-    font-size: clamp(54px, 6.2vw, 82px)
+    font-size: clamp(54px, 8vw, 104px)
 }
 
 .hero h1 em {
+    position: relative;
+    display: inline-block;
     color: var(--teal);
     font-family: Georgia, 'Times New Roman', serif;
     font-weight: 400
 }
 
+.hero__smile {
+    position: absolute;
+    top: 97%;
+    left: 5%;
+    width: 90%;
+    fill: none;
+    stroke: #9ed0c2;
+    stroke-dasharray: 1;
+    stroke-linecap: round;
+    stroke-width: 5;
+    animation: smile 900ms 650ms ease-out backwards
+}
+
+@keyframes smile {
+    from {
+        stroke-dashoffset: 1
+    }
+}
+
 .hero__lead {
-    max-width: 560px;
-    margin: 25px 0 30px;
+    max-width: 600px;
+    margin: 46px 0 32px;
     color: var(--muted);
     font-size: 18px;
     line-height: 1.7
@@ -287,15 +340,18 @@ svg {
 .hero__actions {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 25px
 }
 
 .hero__facts {
     display: flex;
+    justify-content: center;
     gap: 34px;
     margin-top: 48px;
-    padding-top: 25px;
-    border-top: 1px solid var(--line)
+    padding: 25px 30px 0;
+    border-top: 1px solid var(--line);
+    text-align: left
 }
 
 .hero__facts>div {
@@ -318,127 +374,52 @@ svg {
     font-weight: 600
 }
 
-.hero__visual {
-    position: relative;
-    min-height: 525px
-}
-
-.hero__arch {
-    position: absolute;
-    inset: 0 3% 0 4%;
-    display: grid;
-    place-items: center;
+.ribbon {
     overflow: hidden;
-    border-radius: 220px 220px 30px 30px;
-    background: linear-gradient(145deg, #dcebe5, #b9d7ce);
-    box-shadow: var(--shadow)
+    padding-block: 17px;
+    background: var(--teal);
+    color: var(--ivory)
 }
 
-.hero__arch::before,
-.hero__arch::after {
-    position: absolute;
-    border: 1px solid rgba(255, 255, 255, .56);
-    border-radius: 50%;
-    content: ''
+.ribbon__track {
+    display: flex;
+    width: max-content;
+    animation: ribbon 45s linear infinite
 }
 
-.hero__arch::before {
-    width: 440px;
-    height: 440px;
-    top: -90px;
-    right: -130px
+.ribbon:hover .ribbon__track {
+    animation-play-state: paused
 }
 
-.hero__arch::after {
-    width: 290px;
-    height: 290px;
-    bottom: -130px;
-    left: -75px
+.ribbon ul {
+    display: flex;
+    flex: 0 0 auto;
+    margin: 0;
+    padding: 0;
+    list-style: none
 }
 
-.hero__tooth {
-    position: relative;
-    z-index: 1;
-    width: 62%;
-    color: rgba(7, 71, 68, .56)
-}
-
-.hero__sparkle {
-    position: absolute;
-    color: var(--teal);
-    font-family: Georgia, serif
-}
-
-.hero__sparkle--one {
-    top: 19%;
-    left: 17%;
-    font-size: 40px
-}
-
-.hero__sparkle--two {
-    right: 17%;
-    bottom: 22%;
-    font-size: 32px
-}
-
-.hero__badge {
-    position: absolute;
-    z-index: 3;
-    right: -12px;
-    bottom: 38px;
+.ribbon li {
     display: flex;
     align-items: center;
-    gap: 12px;
-    padding: 15px 20px 15px 14px;
-    border: 1px solid rgba(255, 255, 255, .8);
-    border-radius: 15px;
-    background: rgba(255, 253, 248, .94);
-    box-shadow: 0 14px 35px rgba(5, 57, 55, .15)
+    font-family: 'Manrope', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .02em;
+    white-space: nowrap
 }
 
-.hero__badge-mark {
-    display: grid;
-    width: 34px;
-    height: 34px;
-    place-items: center;
-    border-radius: 50%;
-    background: var(--teal);
-    color: white;
-    font-size: 14px
+.ribbon li::after {
+    margin-inline: 26px;
+    color: #9ed0c2;
+    font-size: 11px;
+    content: '✦'
 }
 
-.hero__badge>span:last-child {
-    display: flex;
-    flex-direction: column
-}
-
-.hero__badge strong {
-    font-size: 13px
-}
-
-.hero__badge small {
-    color: var(--muted);
-    font-size: 10px
-}
-
-.hero__orb {
-    position: absolute;
-    border: 1px solid rgba(11, 93, 91, .1);
-    border-radius: 50%
-}
-
-.hero__orb--one {
-    width: 190px;
-    height: 190px;
-    top: 21%;
-    left: -115px
-}
-
-.hero__orb--two {
-    width: 110px;
-    height: 110px;
-    right: 4%;
-    bottom: -55px
+@keyframes ribbon {
+    to {
+        transform: translateX(-50%)
+    }
 }
 
 .section {
@@ -464,7 +445,7 @@ svg {
     position: relative;
     min-height: 520px;
     overflow: hidden;
-    border-radius: var(--radius-lg);
+    border-radius: 220px 220px var(--radius-lg) var(--radius-lg);
     background: linear-gradient(155deg, #dfeae4, #aacbc0)
 }
 
@@ -473,9 +454,8 @@ svg {
     inset: 0;
     width: 100%;
     height: 100%;
-    min-height: 620px;
     object-fit: cover;
-    object-position: center 46%
+    object-position: center 68%
 }
 
 .doctor__intro {
@@ -890,20 +870,6 @@ svg {
 }
 
 @media(max-width:980px) {
-    .hero__grid {
-        min-height: 620px;
-        grid-template-columns: 1fr;
-        gap: 0
-    }
-
-    .hero__visual {
-        display: none
-    }
-
-    .hero__content {
-        max-width: 720px
-    }
-
     .doctor__grid {
         gap: 55px
     }
@@ -997,14 +963,7 @@ svg {
         text-align: center
     }
 
-    .hero,
-    .hero__grid {
-        min-height: auto
-    }
-
-    .hero__grid {
-        grid-template-columns: 1fr;
-        gap: 46px;
+    .hero__inner {
         padding-block: 68px 60px
     }
 
@@ -1014,18 +973,6 @@ svg {
 
     .hero__lead {
         font-size: 16px
-    }
-
-    .hero__visual {
-        min-height: 450px
-    }
-
-    .hero__arch {
-        inset-inline: 3%
-    }
-
-    .hero__badge {
-        right: -3px
     }
 
     .section {
@@ -1077,14 +1024,6 @@ svg {
     .hero__facts {
         flex-wrap: wrap;
         gap: 19px 28px
-    }
-
-    .hero__visual {
-        min-height: 390px
-    }
-
-    .hero__badge {
-        bottom: 20px
     }
 
     .doctor__portrait {
@@ -1156,6 +1095,7 @@ svg {
     *::before,
     *::after {
         scroll-behavior: auto !important;
+        animation: none !important;
         transition-duration: .01ms !important
     }
 }

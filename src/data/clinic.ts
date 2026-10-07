@@ -20,6 +20,8 @@ export const clinic = {
 		'https://www.google.com/maps/search/?api=1&query=Shri+Seva+Hospital%2C+Bhekarainagar%2C+Pune+412308',
 	mapEmbed:
 		'https://www.google.com/maps?q=Shri+Seva+Hospital%2C+Bhekarainagar%2C+Pune+412308&output=embed',
+	googleProfile: 'https://share.google/egRnMMnGGmBIy9HKi',
+	geo: { latitude: 18.4821229, longitude: 73.954296 },
 	doctor: {
 		name: 'Dr. Apurva Undre',
 		degree: 'BDS (M.U.H.S.)',
